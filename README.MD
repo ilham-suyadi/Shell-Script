@@ -1,7 +1,7 @@
 ## Simple Running Shell Script
 
 ```sh
-bash <(wget -O - https://shell.ilhamsuyadi.dev/)
+bash <(wget -qO - https://shell.ilhamsuyadi.dev/)
 ```
 
 
