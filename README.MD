@@ -1,8 +1,9 @@
 ## Simple Running Shell Script
 
 ```sh
-wget -O - https://raw.ilhamsuyadi.dev/<name-file> | bash
+bash <(wget -O - https://shell.ilhamsuyadi.dev/)
 ```
+
 
 ## Execute Shell
 
