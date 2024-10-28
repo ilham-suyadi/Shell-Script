@@ -25,18 +25,24 @@ install_k9s_rocky() {
 # Fetch latest version of k9s
 VERSION=$(curl --silent "https://api.github.com/repos/derailed/k9s/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/') || error "Failed to fetch latest version of k9s"
 
-# Check for Ubuntu
-if [ -f /etc/lsb-release ]; then
+
+if [ -f /etc/os-release ]; then
+    # Extract OS ID
+    OS_ID=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+else
+    echo "/etc/os-release not found"
+fi
+
+if [ "$OS_ID" == "ubuntu" ] || [ "$OS_ID" == "debian" ]; then
     install_k9s_ubuntu "$VERSION"
     unset VERSION
     exit 0
-fi
-
-# Check for Rocky Linux
-if [ -f /etc/redhat-release ] && grep -q "Rocky" /etc/redhat-release; then
+elif [ "$OS_ID" == "fedora" ] || elif [ "$OS_ID" == "rocky"]; then
     install_k9s_rocky "$VERSION"
     unset VERSION
     exit 0
+else
+    echo "Unknow or unsupported Operating System: $OS_ID"
 fi
 
 unset VERSION
