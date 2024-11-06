@@ -15,7 +15,7 @@ install_k9s_ubuntu() {
 }
 
 # Function to install k9s for Rocky Linux
-install_k9s_rocky() {
+install_k9s_rpm() {
     local version="$1"
     wget "https://github.com/derailed/k9s/releases/download/v${version}/k9s_linux_amd64.rpm" || error "Failed to download k9s RPM package"
     sudo dnf localinstall k9s_linux_amd64.rpm || error "Failed to install k9s RPM package"
@@ -38,7 +38,7 @@ if [ "$OS_ID" == "ubuntu" ] || [ "$OS_ID" == "debian" ]; then
     unset VERSION
     exit 0
 elif [ "$OS_ID" == "fedora" ] || [ "$OS_ID" == "rocky"]; then
-    install_k9s_rocky "$VERSION"
+    install_k9s_rpm "$VERSION"
     unset VERSION
     exit 0
 else
