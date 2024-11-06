@@ -18,7 +18,7 @@ install_k9s_ubuntu() {
 install_k9s_rpm() {
     local version="$1"
     wget "https://github.com/derailed/k9s/releases/download/v${version}/k9s_linux_amd64.rpm" || error "Failed to download k9s RPM package"
-    sudo dnf localinstall k9s_linux_amd64.rpm || error "Failed to install k9s RPM package"
+    sudo dnf localinstall k9s_linux_amd64.rpm -y || error "Failed to install k9s RPM package"
     rm k9s_linux_amd64.rpm || error "Failed to remove k9s RPM package"
 }
 
