@@ -37,7 +37,7 @@ if [ "$OS_ID" == "ubuntu" ] || [ "$OS_ID" == "debian" ]; then
     install_k9s_ubuntu "$VERSION"
     unset VERSION
     exit 0
-elif [ "$OS_ID" == "fedora" ] || [ "$OS_ID" == "rocky"]; then
+elif [ "$OS_ID" == "fedora" ] || [ "$OS_ID" == "rocky" ]; then
     install_k9s_rpm "$VERSION"
     unset VERSION
     exit 0
